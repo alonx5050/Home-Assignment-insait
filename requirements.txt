@@ -1,6 +1,8 @@
 Flask
-openai
+openai>=1.0.0
 psycopg2-binary
 SQLAlchemy
 alembic
 Flask-SQLAlchemy
+Flask-Migrate   # Optional, recommended for easier migration management
+python-dotenv   # Optional, for managing environment variables like API keys
