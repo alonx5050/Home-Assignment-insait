@@ -12,12 +12,11 @@ services:
       - pgdata:/var/lib/postgresql/data
   flask-app:
     build: .
-    environment:
-      - OPENAI_API_KEY=sk-UYeD9ZboNBPpPxbSA6UmmN1FbbxRXS-r5kv4JARUyfT3BlbkFJ46S5hPyYjAhjlv06SYqREsjau4dkvgpy4wxDopj6MA
     ports:
       - "5000:5000"
     depends_on:
       - db
-
+    env_file:
+      - .env # Use the .env file for environment variables
 volumes:
   pgdata:
