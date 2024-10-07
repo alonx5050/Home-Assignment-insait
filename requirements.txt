@@ -1,0 +1,6 @@
+Flask
+openai
+psycopg2-binary
+SQLAlchemy
+alembic
+Flask-SQLAlchemy
