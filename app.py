@@ -1,13 +1,18 @@
 from flask import Flask, request, jsonify
 from openai import OpenAI
 from flask_sqlalchemy import SQLAlchemy
+import os
 
 app = Flask(__name__)
 
-# Hardcode your OpenAI API key directly into the project
-client = OpenAI(api_key='sk-3qlV2jtFtGtpY6u9jMRV_4Z5_r7mvbZPcl32NMJukBT3BlbkFJgWf2hRr82Q7MBfOKdNnfe1UhoZtLIM23OZhiFm7yoA')
+# Get the API key from the environment variable
+openai_api_key = os.getenv('OPENAI_API_KEY')
+if not openai_api_key:
+    raise ValueError("No OpenAI API key found. Set the OPENAI_API_KEY environment variable.")
 
-# PostgreSQL connection string (make sure this matches your Docker configuration)
+client = OpenAI(api_key=openai_api_key)
+
+# PostgreSQL connection string
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://user:password@db:5432/qna_db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
@@ -30,14 +35,13 @@ def ask_question():
     try:
         # Use the OpenAI client to generate an answer
         completion = client.chat.completions.create(
-            model="gpt-4",  # Use GPT-4 model
+            model="gpt-4",
             messages=[
                 {"role": "system", "content": "You are a helpful assistant."},
                 {"role": "user", "content": question}
             ]
         )
 
-        # Access the message content properly
         answer = completion.choices[0].message.content.strip()
 
         # Save the question and answer to the database
