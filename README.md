@@ -1,4 +1,3 @@
-
 # Backend Developer Task
 
 Welcome to my repository for the Backend Developer Task! This project demonstrates a simple Flask-based application integrated with OpenAI’s API for answering questions, storing them in a PostgreSQL database. The project is fully containerized using Docker, and pytest has been used for testing.
@@ -62,7 +61,6 @@ This Flask application allows users to ask questions via a POST request, and the
    ```bash
    source venv/bin/activate
    ``` 
-
 
 2. Create a `.env` file to store your OpenAI API key:
    ```
@@ -201,8 +199,8 @@ This ensures data integrity and prevents partial updates that could corrupt the 
 ###  Using Migrations with Alembic
 The project is configured with Alembic for database migrations. This allows us to track and apply database schema changes consistently across different environments, ensuring the same schema structure exists in development, staging, and production.
 We have also implemented **automatic migrations** using Alembic, which helps ensure database schema consistency across environments. This allows us to apply database schema changes safely and automatically.
+
 Alembic helps prevent potential conflicts in schema versions and ensures smooth database upgrades.
-
-
 ---
+
 
