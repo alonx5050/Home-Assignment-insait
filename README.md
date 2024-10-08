@@ -94,6 +94,56 @@ Once you have the Docker containers running, you can interact with the applicati
   }
   ```
 
+### How to View Questions and Answers in PostgreSQL
+
+To view the questions and answers stored in your PostgreSQL database, you can follow these steps:
+
+#### 1. Connect to Your PostgreSQL Database
+First, open a terminal and run the following command inside your Flask app Docker container to connect to the database:
+
+```bash
+docker exec -it backend-developer-task-db-1 /bin/sh
+```
+
+Once inside the container, connect to the PostgreSQL instance using the `psql` client:
+
+```bash
+psql -h localhost -U user -d qna_db
+```
+
+You’ll be prompted to enter the password (use `password` as per your `docker-compose.yml` file).
+
+#### 2. View the Table Structure
+To check if the `QnA` table was created, you can list all the tables in the database:
+
+```sql
+\dt
+```
+
+You should see a table named `qn_a` (or whatever table name was defined in your model).
+
+#### 3. Query the Data
+To view the questions and answers, you can run the following SQL `SELECT` query:
+
+```sql
+SELECT * FROM qn_a;
+```
+
+This will return all the rows with the questions and their corresponding answers stored in the database.
+
+#### 4. Exit
+Once you're done, you can exit the `psql` terminal by typing:
+
+```sql
+\q
+```
+
+Then, exit the Docker container by typing:
+
+```bash
+exit
+```
+
 ---
 
 ## Running Tests
