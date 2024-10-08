@@ -199,8 +199,9 @@ This ensures data integrity and prevents partial updates that could corrupt the 
 ###  Using Migrations with Alembic
 The project is configured with Alembic for database migrations. This allows us to track and apply database schema changes consistently across different environments, ensuring the same schema structure exists in development, staging, and production.
 We have also implemented **automatic migrations** using Alembic, which helps ensure database schema consistency across environments. This allows us to apply database schema changes safely and automatically.
-
 Alembic helps prevent potential conflicts in schema versions and ensures smooth database upgrades.
+
+
 ---
 
 
