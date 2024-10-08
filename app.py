@@ -38,19 +38,19 @@ def ask_question():
         return jsonify({'error': 'Question is required'}), 400
 
     try:
-        # Use the OpenAI client to generate an answer
+    
         completion = client.chat.completions.create(
-            model="gpt-4",  # Use GPT-4 model
+            model="gpt-4",  
             messages=[
                 {"role": "system", "content": "You are a helpful assistant."},
                 {"role": "user", "content": question}
             ]
         )
 
-        # Access the message content properly
+        
         answer = completion.choices[0].message.content.strip()
 
-        # Save the question and answer to the database
+        
         new_qna = QnA(question=question, answer=answer)
         db.session.add(new_qna)
         db.session.commit()
